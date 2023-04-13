@@ -21,6 +21,8 @@ a:active {
     margin: 0 auto;
     background-color: white;
     padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 header {

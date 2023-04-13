@@ -1,22 +1,27 @@
-<?php 
-require 'connect.php';
-?>
+<?php   
+$numOfValues = 0;
+require ('connect.php');
+$stmt = 'SELECT * FROM characters ORDER BY name';
+foreach ($conn->query($stmt) as $result) {
+    $numOfValues +=1;
+}
+?> 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All Characters</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <link href="resources/css/style.css" rel="stylesheet"/>
-</head>
-<body>
-<header><h1>Alle <?php echo $numOfChar['id']; ?> characters uit de database</h1></header>
-
+    <head>
+        <meta charset="UTF-8">
+        <title>All Characters</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+        <link href="resources/css/style.css" rel="stylesheet"/>
+    </head>
+    <body>
+        <header><h1>Alle <?php echo $numOfValues; ?> characters uit de database</h1></header>
+        
 <div id="container">
 <?php
 foreach ($conn->query($stmt) as $result) {
 ?> 
-    <a class="item" href="character.php">
+    <a class="item" href="character.php?nameId=<?php echo $result['name']?>">
         <div class="left">
             <img class="avatar" src="resources/images/<?php echo $result['avatar']; ?>">
         </div>
@@ -33,6 +38,7 @@ foreach ($conn->query($stmt) as $result) {
         <div class="detailButton"><i class="fas fa-search"></i> bekijk</div>
     </a>
     <?php } ?>
+
 </div>
 <footer>&copy; Mike Minheere 2023</footer>
 </body>

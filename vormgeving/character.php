@@ -1,19 +1,22 @@
+<?php   
+    $nameId = $_GET['nameId'];
+    require ('connect.php');
+    $stmt = $conn ->query("SELECT * FROM characters WHERE name='$nameId'");
+    $result = $stmt->fetch();     
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Character - Bowser</title>
+    <title>Character </title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link href="resources/css/style.css" rel="stylesheet"/>
 </head>
 <body>
-<header><h1>Bowser</h1>
+<header><h1><?php echo $result['name'];?> </h1>
     <a class="backbutton" href="index.php"><i class="fas fa-long-arrow-alt-left"></i> Terug</a>
 </header>
-<?php
-    require 'connect.php';
-    foreach ($conn->query($stmt) as $result) {
-?> 
+
 <div id="container">
     <div class="detail">
         <div class="left">
@@ -42,7 +45,6 @@
         <div style="clear: both"></div>
     </div>
 </div>
-<?php }?>
 <footer>&copy; Mike Minheere 2023</footer>
 </body>
 </html>

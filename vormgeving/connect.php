@@ -10,6 +10,5 @@ try {
 } catch(PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
 }
-$stmt = 'SELECT * FROM characters ORDER BY name';
-$numOfChar = $stmt->fetch();
+
 ?> 
